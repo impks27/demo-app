@@ -5,7 +5,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -19,3 +18,18 @@ jobs:
         uses: gradle/gradle-build-action@0d13054264b0bb894ded474f08ebb30921341cee
         with:
           arguments: clean build
+      # Scan code with Checkmarx
+      - name: Checkmarx CxFlow Action
+        uses: checkmarx-ts/checkmarx-cxflow-github-action@v1.3
+        with:
+          project: GithubActionTest
+          team: /CxServer/SP/Checkmarx
+          checkmarx_url: ${{ secrets.CHECKMARX_URL }}
+          checkmarx_username: ${{ secrets.CHECKMARX_USERNAME }}
+          checkmarx_password: ${{ secrets.CHECKMARX_PASSWORD }}
+          checkmarx_client_secret: ${{ secrets.CHECKMARX_CLIENT_SECRET }}
+      # Upload SARIF report for CodeQL / Security Alerts PRocessing
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: cx.sarif
