@@ -11,5 +11,16 @@ public class HelloWorld {
 
 	Greeter greeter = new Greeter();
 	System.out.println(greeter.sayHello());
+	  
+	short int bytesRec = 0;
+	char buf[123456];
+
+	while(bytesRec < 123456789) {
+	  bytesRec += getFromInput();
+	}
+  }
+	
+  def getFromInput(buf,bytesRec) {
+	  return buf + bytesRec
   }
 }
