@@ -1,0 +1,13 @@
+name: Manual trigger
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manual:
+    name: Manual Jon
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run Manual Workflow Step
+      run: |
+        echo "Run Manual Workflow Step!"
