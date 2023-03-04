@@ -1,4 +1,4 @@
-name: Manual trigger
+name: Manual trigger from branch
 
 on: 
   workflow_dispatch:
@@ -11,7 +11,7 @@ on:
         description: 'Test scenario tags' 
 jobs:
   manual:
-    name: Manual Jon
+    name: Manual Job from branch
     runs-on: ubuntu-latest
     steps:
     - name: Run Manual Workflow Step
