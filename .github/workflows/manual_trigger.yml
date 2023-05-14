@@ -17,3 +17,5 @@ jobs:
     - name: Run Manual Workflow Step
       run: |
         echo "Run Manual Workflow Step!"
+    - name: Run Manual Custom Action
+      uses: impks27/demo-js-action@main
