@@ -22,7 +22,7 @@ jobs:
     if: needs.a.outputs.run_job_b == 'yes'
     steps:
       - run: echo "B"
-d:
+  d:
     name: Express
     runs-on: ubuntu-latest
     needs:
