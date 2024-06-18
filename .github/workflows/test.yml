@@ -5,7 +5,7 @@ on:
   push:
 jobs:
   a:
-    name: a
+    name: Lane Check
     runs-on: ubuntu-latest
     steps:
       - run: echo "A"
@@ -15,11 +15,19 @@ jobs:
     outputs:
       run_job_b: ${{ steps.set.outputs.run_job_b }}
   b:
-    name: b
+    name: Express
     runs-on: ubuntu-latest
     needs:
       - a
     if: needs.a.outputs.run_job_b == 'yes'
+    steps:
+      - run: echo "B"
+d:
+    name: Express
+    runs-on: ubuntu-latest
+    needs:
+      - a
+    if: needs.a.outputs.run_job_b == 'no'
     steps:
       - run: echo "B"
   c:
@@ -28,6 +36,7 @@ jobs:
     needs:
       - a
       - b
+      - d
     if: |
       always() && needs.a.result == 'success' && (needs.b.result == 'success' || needs.b.result == 'skipped')
     steps:
